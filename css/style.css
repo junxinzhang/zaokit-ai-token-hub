@@ -88,6 +88,14 @@ img{max-width:100%;display:block}
   transition:background .2s,color .2s;
 }
 .nav-links a:hover,.nav-links a.active{color:var(--primary-strong);background:rgba(240,168,48,0.10)}
+.nav-links .nav-cta{
+  background:linear-gradient(130deg,var(--primary),var(--primary-strong));
+  color:#0a0e1a;font-weight:700;border-radius:999px;
+  padding:7px 18px;font-size:.88rem;
+  box-shadow:0 4px 14px rgba(240,168,48,0.25);
+  transition:transform .18s,box-shadow .18s,background .18s;
+}
+.nav-links .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(240,168,48,0.35)}
 
 /* ── Hero ── */
 .hero{padding:110px 0 90px;overflow:hidden}
