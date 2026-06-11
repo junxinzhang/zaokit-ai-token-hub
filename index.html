@@ -499,11 +499,46 @@
         <h2>企业上 AI 的第一步，从 Token Hub 开始</h2>
         <p>把复杂留给我们，把简单交给你。立即联系，获取适配你公司的 Token Hub 方案。</p>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="mailto:jason2023zhang@gmail.com" id="cta-email">发送邮件咨询</a>
-          <button class="btn btn-secondary" onclick="alert('微信添加：winnielove2020（请备注：Token Hub 咨询）')" id="cta-wechat">添加微信沟通</button>
+          <button class="btn btn-primary" onclick="openContactModal('email')" id="cta-email">发送邮件咨询</button>
+          <button class="btn btn-secondary" onclick="openContactModal('wechat')" id="cta-wechat">添加微信沟通</button>
         </div>
       </div>
     </section>
+
+    <!-- ════════ Contact Modal ════════ -->
+    <div class="modal-overlay" id="contact-modal" aria-hidden="true">
+      <div class="modal-card">
+        <button class="modal-close" onclick="closeContactModal()" aria-label="关闭">&times;</button>
+        <h3 class="modal-title">📬 联系我们</h3>
+        <p class="modal-desc">选择您方便的联系方式，我们会在 24 小时内回复。</p>
+
+        <div class="modal-contact-item" id="modal-email-item">
+          <div class="modal-contact-icon">📧</div>
+          <div class="modal-contact-info">
+            <span class="modal-contact-label">邮箱</span>
+            <span class="modal-contact-value" id="contact-email-text">jason2023zhang@gmail.com</span>
+          </div>
+          <button class="modal-copy-btn" onclick="copyAndSend('email')" id="modal-email-btn">
+            <span class="copy-text">复制并发送</span>
+            <span class="copy-done" style="display:none">✓ 已复制</span>
+          </button>
+        </div>
+
+        <div class="modal-contact-item" id="modal-wechat-item">
+          <div class="modal-contact-icon">💬</div>
+          <div class="modal-contact-info">
+            <span class="modal-contact-label">微信号（请备注：Token Hub 咨询）</span>
+            <span class="modal-contact-value" id="contact-wechat-text">winnielove2020</span>
+          </div>
+          <button class="modal-copy-btn" onclick="copyText('wechat')" id="modal-wechat-btn">
+            <span class="copy-text">复制微信号</span>
+            <span class="copy-done" style="display:none">✓ 已复制</span>
+          </button>
+        </div>
+
+        <p class="modal-footer-note">工作时间：9:00 ~ 23:00</p>
+      </div>
+    </div>
 
   </main>
 

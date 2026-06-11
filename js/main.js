@@ -211,3 +211,73 @@
     draw();
   }
 })();
+
+/* ── Contact Modal (global scope for onclick handlers) ── */
+function openContactModal(focus) {
+  const modal = document.getElementById('contact-modal');
+  if (!modal) return;
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  // Highlight the relevant item
+  const emailItem = document.getElementById('modal-email-item');
+  const wechatItem = document.getElementById('modal-wechat-item');
+  if (emailItem) emailItem.classList.toggle('highlight', focus === 'email');
+  if (wechatItem) wechatItem.classList.toggle('highlight', focus === 'wechat');
+}
+
+function closeContactModal() {
+  const modal = document.getElementById('contact-modal');
+  if (!modal) return;
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+
+  // Reset copy button states
+  modal.querySelectorAll('.modal-copy-btn').forEach((btn) => {
+    btn.querySelector('.copy-text').style.display = '';
+    btn.querySelector('.copy-done').style.display = 'none';
+  });
+}
+
+function copyText(type) {
+  const textMap = {
+    email: 'jason2023zhang@gmail.com',
+    wechat: 'winnielove2020',
+  };
+  const text = textMap[type];
+  if (!text) return;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const btnId = type === 'email' ? 'modal-email-btn' : 'modal-wechat-btn';
+    const btn = document.getElementById(btnId);
+    if (btn) {
+      btn.querySelector('.copy-text').style.display = 'none';
+      btn.querySelector('.copy-done').style.display = '';
+      setTimeout(() => {
+        btn.querySelector('.copy-text').style.display = '';
+        btn.querySelector('.copy-done').style.display = 'none';
+      }, 2500);
+    }
+  });
+}
+
+function copyAndSend(type) {
+  copyText(type);
+  // Also try to open mailto
+  setTimeout(() => {
+    window.location.href = 'mailto:jason2023zhang@gmail.com?subject=Token Hub 咨询';
+  }, 300);
+}
+
+// Close modal on overlay click or Escape key
+document.addEventListener('click', (e) => {
+  const modal = document.getElementById('contact-modal');
+  if (modal && modal.classList.contains('is-open') && e.target === modal) {
+    closeContactModal();
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeContactModal();
+});
